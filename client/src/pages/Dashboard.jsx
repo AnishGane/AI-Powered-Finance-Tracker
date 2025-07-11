@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <div className="max-h-screen w-full"></div>;
+};
 
-export default Dashboard
+export default Dashboard;

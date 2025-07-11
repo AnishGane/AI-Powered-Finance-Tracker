@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Testimonials from "../components/Testimonials";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -79,26 +80,76 @@ const features = [
   },
 ];
 
+const heroVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeInOut" },
+  },
+};
+
+const featureVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      delay: i * 0.18 + 0.2,
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const buttonVariants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.02, boxShadow: "0 8px 24px rgba(254,74,73,0.15)" },
+};
+
 const LandingPage = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-[#F7F4EA]">
+    <div className="flex flex-col pt-20">
       {/* Hero Section */}
-      <section className="flex flex-1 flex-col items-center justify-center px-4 py-20 text-center">
-        <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 md:text-6xl">
+      <motion.section
+        className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center"
+        variants={heroVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1
+          className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 md:text-6xl"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           Take Control of Your <span className="text-[#FE4A49]">Finances</span>{" "}
           with Spend<span className="font-medium text-[#FE4A49]">Wise</span>
-        </h1>
-        <p className="mb-8 max-w-2xl text-lg text-gray-600 md:text-xl">
+        </motion.h1>
+        <motion.p
+          className="mb-8 max-w-2xl text-lg text-gray-600 md:text-xl"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        >
           SpendWise helps you track spending, chat with an AI advisor, and plan
           your financial future—all in one secure platform.
-        </p>
-        <Link
-          to="/dashboard"
-          className="rounded bg-[#FE4A49] px-8 py-3 text-lg font-semibold text-white shadow-lg transition hover:bg-red-600/90 focus:ring-2 focus:ring-[#FE4A49] focus:ring-offset-2 focus:outline-none"
+        </motion.p>
+        <motion.div
+          variants={buttonVariants}
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
         >
-          Get Started
-        </Link>
-      </section>
+          <Link
+            to="/login"
+            className="rounded bg-[#FE4A49] px-8 py-3 text-lg font-semibold text-white shadow-lg transition hover:bg-red-600/90 focus:ring-2 focus:ring-[#FE4A49] focus:ring-offset-2 focus:outline-none"
+          >
+            Get Started
+          </Link>
+        </motion.div>
+      </motion.section>
 
       {/* Features Section */}
       <section className="mx-auto w-full max-w-6xl px-4 py-12">
@@ -107,9 +158,14 @@ const LandingPage = () => {
         </h2>
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           {features.map((feature, idx) => (
-            <div
+            <motion.div
               key={idx}
               className="flex flex-col items-center rounded-xl bg-white p-6 shadow-md transition duration-150 ease-in-out hover:scale-[1.02] hover:shadow-xl"
+              custom={idx}
+              variants={featureVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FE4A49]/10">
                 {feature.icon}
@@ -118,18 +174,13 @@ const LandingPage = () => {
                 {feature.title}
               </h3>
               <p className="text-center text-gray-600">{feature.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* Testimonials Section */}
       <Testimonials />
-
-      {/* Footer */}
-      <footer className="mt-auto w-full bg-white py-6 text-center text-sm text-gray-500 shadow-inner">
-        &copy; {new Date().getFullYear()} SpendWise. All rights reserved.
-      </footer>
     </div>
   );
 };

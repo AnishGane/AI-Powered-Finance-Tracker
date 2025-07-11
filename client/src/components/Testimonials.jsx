@@ -52,7 +52,6 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  // Duplicate testimonials for seamless looping
   const marqueeTestimonials = [...testimonials, ...testimonials];
 
   return (
@@ -64,9 +63,9 @@ const Testimonials = () => {
         {/* Decorative blurred background shape for extra depth */}
         <div className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40 opacity-60 blur-3xl" />
         {/* Left blur overlay (realistic, wide, multi-stop, extra soft) */}
-        <div className="pointer-events-none absolute top-0 -left-32 z-20 h-full w-80 rounded-full bg-gradient-to-r from-white/80 via-white/90 via-70% to-transparent blur-md" />
+        <div className="pointer-events-none absolute top-0 -left-32 z-20 h-full w-60 rounded-full bg-gradient-to-r from-white/80 via-white/90 via-70% to-transparent blur-md" />
         {/* Right blur overlay (realistic, wide, multi-stop, extra soft) */}
-        <div className="pointer-events-none absolute top-0 -right-32 z-20 h-full w-80 rounded-full bg-gradient-to-l from-white/80 via-white/90 via-70% to-transparent blur-md" />
+        <div className="pointer-events-none absolute top-0 -right-32 z-20 h-full w-60 rounded-full bg-gradient-to-l from-white/80 via-white/90 via-70% to-transparent blur-md" />
         <div className="marquee relative z-10">
           {marqueeTestimonials.map((t, idx) => (
             <div

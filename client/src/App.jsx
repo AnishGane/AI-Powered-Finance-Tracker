@@ -9,38 +9,35 @@ import PageNotFound from "./pages/PageNotFound";
 import LandingPage from "./pages/LandingPage";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
-
-// Helper to dispatch a custom event when token changes
-function setTokenInStorage(token) {
-  if (token) {
-    localStorage.setItem("token", token);
-  } else {
-    localStorage.removeItem("token");
-  }
-  window.dispatchEvent(new Event("tokenchange"));
-}
-
-const useToken = () => {
-  const [hasToken, setHasToken] = useState(!!localStorage.getItem("token"));
-  useEffect(() => {
-    const checkToken = () => setHasToken(!!localStorage.getItem("token"));
-    window.addEventListener("storage", checkToken);
-    window.addEventListener("tokenchange", checkToken);
-    return () => {
-      window.removeEventListener("storage", checkToken);
-      window.removeEventListener("tokenchange", checkToken);
-    };
-  }, []);
-  return hasToken;
-};
+import Chart from "./pages/Chart";
+import Transaction from "./pages/Transaction";
+import Settings from "./pages/Settings";
+import Sidebar from "./components/Sidebar";
+import { useFinance } from "./context/FinanceContext";
 
 const MainLayout = () => {
-  const hasToken = useToken();
+  const { token } = useFinance();
   return (
     <>
-      {!hasToken && <Navbar />}
-      <Outlet />
-      <Footer />
+      {!token && <Navbar />}
+      {token ? (
+        <div className="flex min-h-screen w-full bg-[#F7F4EA]">
+          <Sidebar />
+          <div className="flex min-h-screen flex-1 flex-col">
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <Footer />
+          </div>
+        </div>
+      ) : (
+        <div className="flex min-h-screen w-full flex-col bg-[#F7F4EA]">
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      )}
     </>
   );
 };
@@ -97,6 +94,9 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/charts" element={<Chart />} />
+          <Route path="/transactions" element={<Transaction />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
@@ -105,4 +105,3 @@ const App = () => {
 };
 
 export default App;
-export { setTokenInStorage };

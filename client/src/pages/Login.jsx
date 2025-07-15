@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Login");
-  const { navigate, api, setToken, setUserName } = useFinance();
+  const { navigate, api, setToken, setUsername } = useFinance();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -54,8 +54,8 @@ const Login = () => {
         if (response.data.success) {
           if (setToken) setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
-          if (setUserName) setUserName(response.data.user.name);
-          localStorage.setItem("userName", response.data.user.name);
+          if (setUsername) setUsername(response.data.user.name);
+          localStorage.setItem("username", response.data.user.name);
           toast.success("Login successful!", {
             duration: 2000,
             position: "bottom-right",

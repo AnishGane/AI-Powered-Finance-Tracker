@@ -12,15 +12,19 @@ export const validateToken = (req, res, next) => {
     // Verify the token using JWT_SECRET
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Add the user ID to the request object
-    req.body.userId = decoded.id;
+    // For GET requests, set req.userId directly
+    if (req.method === "GET") {
+      req.userId = decoded.id;
+    } else {
+      if (!req.body) req.body = {};
+      req.body.userId = decoded.id;
+    }
 
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
       return res.status(401).json({ error: "Token expired" });
     }
-    console.error("Token validation error:", error);
     return res.status(401).json({ error: "Invalid token" });
   }
 };

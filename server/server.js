@@ -3,9 +3,9 @@ import cors from "cors";
 import "dotenv/config";
 import mongoDB from "./config/mongoDB.js";
 import userRouter from "./routes/userRoutes.js";
+import transactionRoutes from "./routes/transactionRoutes.js";
 
 const app = express();
-mongoDB();
 
 // CORS configuration
 const corsOptions = {
@@ -14,12 +14,14 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization", "token"],
   credentials: true,
 };
+mongoDB();
 
 //middleware
 app.use(express.json());
 app.use(cors(corsOptions));
 
 app.use("/api/user", userRouter);
+app.use("/api/transaction", transactionRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

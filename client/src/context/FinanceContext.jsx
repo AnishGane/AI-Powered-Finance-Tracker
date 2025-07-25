@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -21,6 +21,25 @@ export const FinanceProvider = ({ children }) => {
   const currency = "₹";
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
+
+  // Sync with localStorage changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedUsername = localStorage.getItem("username") || "";
+      const storedToken = localStorage.getItem("token") || "";
+      setUsername(storedUsername);
+      setToken(storedToken);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  // Update username function
+  const updateUsername = (newUsername) => {
+    setUsername(newUsername);
+    localStorage.setItem("username", newUsername);
+  };
 
   // Fetch all transactions for the logged-in user
   const fetchTransactions = async () => {
@@ -123,6 +142,7 @@ export const FinanceProvider = ({ children }) => {
     api,
     username,
     setUsername,
+    updateUsername,
     token,
     setToken,
     fetchTransactions,

@@ -38,7 +38,13 @@ const loginUser = async (req, res) => {
         .json({ message: "Invalid credentials", success: false });
     } else {
       const token = createToken(user._id);
-      res.json({ user, success: true, token, username: user.name });
+      res.json({
+        user,
+        success: true,
+        token,
+        username: user.name,
+        email: email,
+      });
     }
   } catch (error) {
     console.log("Error in user login:", error);
@@ -90,7 +96,7 @@ const userRegister = async (req, res) => {
     const user = await newUser.save();
 
     const token = createToken(user._id);
-    res.json({ success: true, token, username: user.name });
+    res.json({ success: true, token, username: user.name, email: email });
   } catch (error) {
     console.log("Error in user registration:", error);
     res.json({
@@ -100,4 +106,70 @@ const userRegister = async (req, res) => {
   }
 };
 
-export { loginUser, userRegister };
+const saveSetting = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+
+    // Find user by email (assuming email is unique identifier)
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Update the user's name
+    user.name = name;
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Name updated successfully",
+      name: user.name,
+    });
+  } catch (error) {
+    console.log("Error in saving settings:", error);
+    res.json({
+      message: `Error in saving settings: ${error.message}`,
+      success: false,
+    });
+  }
+};
+
+const getSavedUsername = async (req, res) => {
+  try {
+    // Get user id from req.userId (set by validateToken middleware)
+    const userId = req.userId;
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized: No user id found",
+      });
+    }
+
+    // Find user by id
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      username: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.log("Error in getting saved username:", error);
+    res.json({
+      message: `Error in getting saved username: ${error.message}`,
+      success: false,
+    });
+  }
+};
+
+export { loginUser, userRegister, saveSetting, getSavedUsername };

@@ -56,6 +56,7 @@ const Login = () => {
           localStorage.setItem("token", response.data.token);
           if (setUsername) setUsername(response.data.user.name);
           localStorage.setItem("username", response.data.user.name);
+          localStorage.setItem("email", response.data.user.email);
           toast.success("Login successful!", {
             duration: 2000,
             position: "bottom-right",

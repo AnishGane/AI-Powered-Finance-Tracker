@@ -15,12 +15,23 @@ const api = axios.create({
 export const FinanceProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const [username, setUsername] = useState(
-    localStorage.getItem("username") || "",
-  );
+  const [username, setUsername] = useState("");
   const currency = "₹";
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
+
+  const showUsername = async () => {
+    try {
+      const res = await api.get("/api/user/getusername", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.data.success) {
+        setUsername(res.data.username);
+      }
+    } catch (error) {
+      console.error("Failed to fetch username", error);
+    }
+  };
 
   // Fetch all transactions for the logged-in user
   const fetchTransactions = async () => {
@@ -129,6 +140,7 @@ export const FinanceProvider = ({ children }) => {
     addTransaction,
     editTransaction,
     deleteTransaction,
+    showUsername,
   };
 
   return (

@@ -5,13 +5,18 @@ import CategorySummary from "../components/CategorySummary";
 import AddTransaction from "../components/AddTransaction";
 
 const Dashboard = () => {
-  const { username, transactions, fetchTransactions, addTransaction } =
-    useFinance();
+  const {
+    username,
+    transactions,
+    showUsername,
+    fetchTransactions,
+    addTransaction,
+  } = useFinance();
   const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     fetchTransactions();
-    // eslint-disable-next-line
+    showUsername();
   }, []);
 
   // Example summary data

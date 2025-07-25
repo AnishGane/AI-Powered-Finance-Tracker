@@ -56,6 +56,7 @@ const Settings = () => {
         <img
           src={user.avatar}
           alt="User Avatar"
+          loading="lazy"
           className="h-16 w-16 rounded-full border-4 border-[#FE4A49]"
         />
         <div className="text-center sm:text-left">

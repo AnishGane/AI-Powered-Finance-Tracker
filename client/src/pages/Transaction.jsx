@@ -275,7 +275,6 @@ const Transaction = () => {
         </div>
       )}
       {/* Edit Transaction Modal */}
-
       {editModalOpen && (
         <>
           {/* Backdrop Blur Layer */}

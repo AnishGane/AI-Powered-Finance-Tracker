@@ -1,120 +1,54 @@
-// import Transaction from "../models/transactionModel.js";
-
-// export const addTransaction = async (req, res) => {
-//   try {
-//     const { amount, type, category, date, description } = req.body;
-//     const userId = req.body.userId;
-//     if (!amount || !type || !category || !date) {
-//       return res
-//         .status(400)
-//         .json({ success: false, message: "Missing required fields" });
-//     }
-//     const transaction = new Transaction({
-//       amount,
-//       type,
-//       category,
-//       date,
-//       description,
-//       user: userId,
-//     });
-//     await transaction.save();
-//     res.status(201).json({ success: true, transaction });
-//   } catch (error) {
-//     console.error("Add transaction error:", error);
-//     res
-//       .status(500)
-//       .json({ success: false, message: "Failed to add transaction" });
-//   }
-// };
-
-// // Edit a transaction
-// export const editTransaction = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const userId = req.body.userId;
-//     const updateData = req.body;
-//     const transaction = await Transaction.findOneAndUpdate(
-//       { _id: id, user: userId },
-//       updateData,
-//       { new: true }
-//     );
-//     if (!transaction) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Transaction not found or unauthorized",
-//       });
-//     }
-//     res.json({ success: true, transaction });
-//   } catch (error) {
-//     console.error("Edit transaction error:", error);
-//     res
-//       .status(500)
-//       .json({ success: false, message: "Failed to edit transaction" });
-//   }
-// };
-
-// // Delete a transaction
-// export const deleteTransaction = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const userId = req.body.userId;
-//     const transaction = await Transaction.findOneAndDelete({
-//       _id: id,
-//       user: userId,
-//     });
-//     if (!transaction) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Transaction not found or unauthorized",
-//       });
-//     }
-//     res.json({ success: true, message: "Transaction deleted" });
-//   } catch (error) {
-//     console.error("Delete transaction error:", error);
-//     res
-//       .status(500)
-//       .json({ success: false, message: "Failed to delete transaction" });
-//   }
-// };
-
-// // Get all transactions for the logged-in user
-// export const getAllTransactions = async (req, res) => {
-//   try {
-//     // For GET, userId is set on req.userId by middleware
-//     const userId = req.userId;
-//     const transactions = await Transaction.find({ user: userId }).sort({
-//       date: -1,
-//     });
-//     res.json({ success: true, transactions });
-//   } catch (error) {
-//     console.error("Get transactions error:", error);
-//     res
-//       .status(500)
-//       .json({ success: false, message: "Failed to fetch transactions" });
-//   }
-// };
-
 import transactionModel from "../models/transactionModel.js";
 
 // Get all transactions for a user
 export const getTransactions = async (req, res) => {
   try {
-    const transactions = await transactionModel.find({
-      userId: req.userId,
-    });
+    const transactions = await transactionModel
+      .find({
+        userId: req.userId,
+      })
+      .sort({ date: -1 });
     // Convert amounts to numbers with 2 decimal places
     const formattedTransactions = transactions.map((t) => ({
       ...t.toObject(),
       amount: Number(t.amount.toFixed(2)),
     }));
-    res.json(formattedTransactions);
+    return res.json({ success: true, transactions: formattedTransactions });
   } catch (error) {
     console.error("Error fetching transactions:", error);
-    res
+    return res
       .status(500)
       .json({ message: "Error fetching transactions", success: false });
   }
 };
+
+// Add a new controller to get transactions by userId from route param
+// export const getTransactionsByUserId = async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+
+//     // Ensure the authenticated user is requesting their own data
+//     if (req.userId?.toString() !== userId?.toString()) {
+//       return res.status(403).json({ success: false, message: "Forbidden" });
+//     }
+
+//     const transactions = await transactionModel
+//       .find({ userId })
+//       .sort({ date: -1 });
+
+//     const formattedTransactions = transactions.map((t) => ({
+//       ...t.toObject(),
+//       amount: Number(t.amount.toFixed(2)),
+//     }));
+
+//     return res.json({ success: true, transactions: formattedTransactions });
+//   } catch (error) {
+//     console.error("Error fetching transactions by userId:", error);
+//     return res
+//       .status(500)
+//       .json({ message: "Error fetching transactions", success: false });
+//   }
+// };
 
 // Add a new transaction
 export const addTransaction = async (req, res) => {
@@ -134,7 +68,7 @@ export const addTransaction = async (req, res) => {
     });
 
     const savedTransaction = await newTransaction.save();
-    res.json({
+    return res.json({
       transaction: {
         ...savedTransaction.toObject(),
         amount: Number(savedTransaction.amount.toFixed(2)),
@@ -143,7 +77,7 @@ export const addTransaction = async (req, res) => {
     });
   } catch (error) {
     console.error("Error adding transaction:", error);
-    res
+    return res
       .status(500)
       .json({ message: "Error adding transaction", success: false });
   }
@@ -181,7 +115,7 @@ export const updateTransaction = async (req, res) => {
       { new: true }
     );
 
-    res.json({
+    return res.json({
       transaction: {
         ...updatedTransaction.toObject(),
         amount: Number(updatedTransaction.amount.toFixed(2)),
@@ -190,7 +124,7 @@ export const updateTransaction = async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating transaction:", error);
-    res
+    return res
       .status(500)
       .json({ message: "Error updating transaction", success: false });
   }
@@ -213,10 +147,13 @@ export const deleteTransaction = async (req, res) => {
     }
 
     await transactionModel.findByIdAndDelete(id);
-    res.json({ message: "Transaction deleted successfully", success: true });
+    return res.json({
+      message: "Transaction deleted successfully",
+      success: true,
+    });
   } catch (error) {
     console.error("Error deleting transaction:", error);
-    res
+    return res
       .status(500)
       .json({ message: "Error deleting transaction", success: false });
   }

@@ -57,6 +57,10 @@ const Login = () => {
           if (setUsername) setUsername(response.data.user.name);
           localStorage.setItem("username", response.data.user.name);
           localStorage.setItem("email", response.data.user.email);
+          // Save userId for optional routes that require it
+          if (response.data.user?._id) {
+            localStorage.setItem("userId", response.data.user._id);
+          }
           toast.success("Login successful!", {
             duration: 2000,
             position: "bottom-right",

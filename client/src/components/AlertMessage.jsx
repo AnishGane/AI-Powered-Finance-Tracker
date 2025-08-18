@@ -3,7 +3,7 @@ import React from "react";
 const AlertMessage = ({ totalExpense, balance }) => {
   if (balance === 0) {
     return (
-      <div className="mb-6 flex items-center rounded-lg bg-blue-100 px-4 py-3 text-blue-800">
+      <div className="mb-6 flex items-center rounded-[8px] bg-blue-100 px-4 py-3 text-blue-800">
         <span className="mr-2 text-xl">ℹ️</span>
         Notice: Your balance is zero. Consider adding income or reducing
         expenses.
@@ -29,7 +29,7 @@ const AlertMessage = ({ totalExpense, balance }) => {
     );
   }
   return (
-    <div className="mb-6 flex items-center rounded-lg bg-green-100 px-4 py-3 text-green-800">
+    <div className="mb-6 flex items-center rounded-lg bg-green-200/80 px-4 py-3 text-green-800">
       <span className="mr-2 text-xl">✅</span>
       Good job! Your balance is healthy and above your expenses.
     </div>

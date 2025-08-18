@@ -16,35 +16,35 @@ const CategorySummary = ({ transactions }) => {
       <h1 className="mb-4 text-xl font-semibold sm:text-2xl">
         Category Summary
       </h1>
-      <section className="mb-6 flex w-full flex-col gap-4 rounded-2xl bg-neutral-100 px-6 pt-5 pb-2 shadow-md">
+      <section className="mb-6 flex w-full flex-col gap-4 rounded-[8px] bg-neutral-200/60 px-3 pt-5 pb-2 shadow-md sm:px-6">
         {!transactions || transactions.length === 0 ? (
           <p className="text-md my-4 text-center text-gray-600">
             No transactions found.
           </p>
         ) : (
-          <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mb-4 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 lg:grid-cols-4">
             {Object.entries(summary).map(([category, { amount, type }]) => (
               <div
                 key={category}
-                className={`flex items-center gap-4 rounded-xl border-l-4 bg-white p-5 shadow-md transition hover:scale-[1.03] hover:shadow-lg ${
+                className={`flex items-center gap-4 rounded-[8px] border-l-4 bg-white p-5 shadow-md transition hover:scale-[1.03] hover:shadow-lg ${
                   type === "Income" ? "border-green-400" : "border-red-400"
                 }`}
               >
                 <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-full text-2xl font-bold ${
+                  className={`flex h-16 w-16 items-center justify-center rounded-full border-2 text-2xl font-bold ${
                     type === "Income"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
+                      ? "border-green-400 bg-green-200 text-green-700"
+                      : "border-red-400 bg-red-200 text-red-700"
                   }`}
                 >
                   {category.charAt(0).toUpperCase()}
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-semibold text-gray-800">
-                    {category}
+                <div className="flex flex-col -space-y-0.5">
+                  <span className="text-[17px] font-normal text-gray-800">
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
                   </span>
                   <span
-                    className={`text-lg font-bold ${
+                    className={`text-xl font-bold ${
                       type === "Income" ? "text-green-600" : "text-red-500"
                     }`}
                   >

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFinance } from "../context/FinanceContext";
 import toast from "react-hot-toast";
-import AddTransaction from "../components/AddTransaction";
 
 const Transaction = () => {
   const {
@@ -100,7 +99,7 @@ const Transaction = () => {
             <input
               type="number"
               id="edit-amount"
-              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-base shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
+              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-lg shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
@@ -116,7 +115,7 @@ const Transaction = () => {
           <div className="relative">
             <select
               id="edit-type"
-              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-base shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
+              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-lg shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
               value={type}
               onChange={(e) => setType(e.target.value)}
             >
@@ -134,7 +133,7 @@ const Transaction = () => {
             <input
               type="text"
               id="edit-category"
-              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-base shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
+              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-lg shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
@@ -151,7 +150,7 @@ const Transaction = () => {
             <input
               type="date"
               id="edit-date"
-              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-base shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
+              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-lg shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               required
@@ -168,7 +167,7 @@ const Transaction = () => {
             <input
               type="text"
               id="edit-description"
-              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-base shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
+              className="peer h-16 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 pt-6 pb-2 text-lg shadow-sm transition outline-none focus:border-[#FE4A49] focus:bg-white focus:ring-2 focus:ring-[#FE4A49]/20"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder=" "

@@ -113,7 +113,7 @@ const LandingPage = () => {
     <div className="flex flex-col pt-20">
       {/* Hero Section */}
       <motion.section
-        className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center"
+        className="flex flex-1 flex-col items-center justify-center px-4 py-16 text-center sm:py-24"
         variants={heroVariants}
         initial="hidden"
         animate="visible"

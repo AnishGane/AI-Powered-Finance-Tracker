@@ -196,7 +196,7 @@ const Settings = () => {
               <button
                 type="button"
                 onClick={() => setEditMode(false)}
-                className="cursor-pointer rounded-md bg-gray-500 px-6 py-2 text-white transition hover:bg-green-600"
+                className="cursor-pointer rounded-md bg-gray-500 px-6 py-2 text-white transition hover:bg-gray-600"
               >
                 Cancel
               </button>

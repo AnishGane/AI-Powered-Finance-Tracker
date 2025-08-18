@@ -103,7 +103,7 @@ const Login = () => {
         </p>
       </section>
       {/* Login Form */}
-      <section className="flex w-full max-w-md flex-col gap-6 rounded-2xl bg-white p-8 shadow-lg">
+      <section className="flex w-full max-w-md flex-col gap-6 rounded-2xl bg-white p-8 pb-20 shadow-lg">
         <form onSubmit={onSubmitHandler} className="flex flex-col gap-5">
           {currentState === "Sign up" && (
             <div>

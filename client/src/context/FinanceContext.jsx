@@ -125,6 +125,22 @@ export const FinanceProvider = ({ children }) => {
     }
   };
 
+  // Logout: clear auth and data, navigate to login
+  const logout = () => {
+    try {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("email");
+      localStorage.removeItem("userId");
+      setToken("");
+      setUsername("");
+      setTransactions([]);
+      navigate("/");
+    } catch (e) {
+      navigate("/");
+    }
+  };
+
   const value = {
     transactions,
     setTransactions,
@@ -141,6 +157,7 @@ export const FinanceProvider = ({ children }) => {
     editTransaction,
     deleteTransaction,
     showUsername,
+    logout,
   };
 
   return (

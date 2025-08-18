@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useFinance } from "../context/FinanceContext";
 
 const Sidebar = () => {
   const location = useLocation();
+  const { logout } = useFinance();
   const sidebarLinks = [
     {
       key: "/dashboard",
@@ -99,6 +101,14 @@ const Sidebar = () => {
             </NavLink>
           ))}
         </nav>
+        {localStorage.getItem("token") && (
+          <button
+            className="mx-auto mt-auto w-[70%] cursor-pointer rounded-[5px] border px-5 py-2 text-sm font-medium text-gray-700 transition hover:text-red-400"
+            onClick={logout}
+          >
+            Logout
+          </button>
+        )}
       </aside>
       {/* Mobile Bottom Nav */}
       <div className="md:hidden">
@@ -118,6 +128,32 @@ const Sidebar = () => {
               </span>
             </NavLink>
           ))}
+          {localStorage.getItem("token") && (
+            <button
+              onClick={logout}
+              className="flex flex-1 cursor-pointer flex-col items-center justify-center rounded-xl py-2 text-gray-500 transition hover:bg-[#FE4A49]/10 hover:text-[#FE4A49] focus:ring-2 focus:ring-[#FE4A49]/20 focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7 4v16"
+                />
+              </svg>
+              <span className="mt-1 text-xs font-medium md:hidden">Logout</span>
+            </button>
+          )}
         </nav>
       </div>
     </>

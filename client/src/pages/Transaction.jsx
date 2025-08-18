@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFinance } from "../context/FinanceContext";
 import toast from "react-hot-toast";
+import { MdEdit, MdDelete } from "react-icons/md";
 
 const Transaction = () => {
   const {
@@ -197,75 +198,80 @@ const Transaction = () => {
         All Transactions
       </h1>
       {!transactions || transactions.length === 0 ? (
-        <div className="text-center text-gray-500">No transactions found.</div>
+        <div className="rounded-2xl border border-dashed border-gray-300 bg-white p-10 text-center text-gray-500 shadow-sm">
+          No transactions found.
+        </div>
       ) : (
-        <div className="overflow-x-auto rounded-lg shadow">
-          <table className="w-full min-w-[600px] bg-white">
-            <thead>
-              <tr className="bg-[#FE4A49]/90 text-white">
-                <th className="px-2 py-1 text-xs md:px-4 md:py-3 md:text-center">
-                  Date
-                </th>
-                <th className="px-2 py-1 text-xs md:px-4 md:py-3 md:text-center">
-                  Type
-                </th>
-                <th className="px-2 py-1 text-xs md:px-4 md:py-3 md:text-center">
-                  Category
-                </th>
-                <th className="px-2 py-1 text-xs md:px-4 md:py-3 md:text-center">
-                  Description
-                </th>
-                <th className="px-2 py-1 text-xs md:px-4 md:py-3 md:text-center">
-                  Amount
-                </th>
-                <th className="px-2 py-1 text-xs md:px-4 md:py-3 md:text-center">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions.map((tx) => (
-                <tr
-                  key={tx._id}
-                  className="border-b text-center hover:bg-gray-50"
-                >
-                  <td className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-                    {new Date(tx.date).toLocaleDateString()}
-                  </td>
-                  <td className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-                    <span
-                      className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${tx.type === "Income" ? "bg-green-200 text-[#04421a]" : "bg-red-200 text-[#e01f1f]"}`}
-                    >
-                      {tx.type}
-                    </span>
-                  </td>
-                  <td className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-                    {tx.category}
-                  </td>
-                  <td className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-                    {tx.description}
-                  </td>
-                  <td className="px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-                    {currency} {Number(tx.amount).toFixed(2)}
-                  </td>
-                  <td className="flex items-center justify-center gap-2 px-2 py-1 text-xs md:px-4 md:py-2 md:text-sm">
-                    <button
-                      className="cursor-pointer rounded bg-blue-600 px-3 py-2 text-xs text-white hover:bg-blue-700 md:px-5"
-                      onClick={() => handleEditClick(tx)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="cursor-pointer rounded bg-red-500 px-3 py-2 text-xs text-white hover:bg-red-700 md:px-5"
-                      onClick={() => handleDelete(tx._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+        <div className="overflow-x-auto rounded-[8px] shadow-md">
+          <div className="overflow-hidden rounded-[8px] border border-gray-100 bg-white">
+            <table className="w-full min-w-[700px] border-collapse">
+              <thead className="bg-neutral-50 font-bold">
+                <tr>
+                  <th className="px-4 py-3.5 text-center text-xs tracking-wide text-gray-600 uppercase">
+                    Date
+                  </th>
+                  <th className="px-4 py-3.5 text-center text-xs tracking-wide text-gray-600 uppercase">
+                    Type
+                  </th>
+                  <th className="px-4 py-3.5 text-center text-xs tracking-wide text-gray-600 uppercase">
+                    Category
+                  </th>
+                  <th className="px-4 py-3.5 text-center text-xs tracking-wide text-gray-600 uppercase">
+                    Description
+                  </th>
+                  <th className="px-4 py-3.5 text-center text-xs tracking-wide text-gray-600 uppercase">
+                    Amount
+                  </th>
+                  <th className="px-4 py-3.5 text-center text-xs tracking-wide text-gray-600 uppercase">
+                    Actions
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-100 text-center">
+                {transactions.map((tx) => (
+                  <tr key={tx._id} className="hover:bg-neutral-50/60">
+                    <td className="px-4 py-3 text-sm text-gray-700">
+                      {new Date(tx.date).toLocaleDateString()}
+                    </td>
+                    <td className="px-4 py-3 text-sm">
+                      <span
+                        className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${tx.type === "Income" ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100" : "bg-rose-50 text-rose-700 ring-1 ring-rose-100"}`}
+                      >
+                        {tx.type}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-sm text-gray-700">
+                      {tx.category}
+                    </td>
+                    <td className="px-4 py-3 text-sm text-gray-600">
+                      {tx.description}
+                    </td>
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900">
+                      {currency} {Number(tx.amount).toFixed(2)}
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center justify-center gap-2">
+                        <button
+                          className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:bg-gray-50"
+                          onClick={() => handleEditClick(tx)}
+                          aria-label="Edit"
+                        >
+                          <MdEdit size={18} />
+                        </button>
+                        <button
+                          className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:bg-rose-50 hover:text-rose-600"
+                          onClick={() => handleDelete(tx._id)}
+                          aria-label="Delete"
+                        >
+                          <MdDelete size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
       {/* Edit Transaction Modal */}

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { CiMenuFries } from "react-icons/ci";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useFinance } from "../context/FinanceContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -11,6 +12,7 @@ const Navbar = () => {
     () => window.innerWidth >= 768,
   );
   const navigate = useNavigate();
+  const { logout } = useFinance();
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -54,7 +56,7 @@ const Navbar = () => {
           Spend<span className="text-[#FE4A49]">Wise</span>
         </h1>
       </Link>
-      <div className="hidden items-center justify-center gap-16 sm:flex">
+      <div className="hidden items-center justify-center gap-4 sm:flex">
         <ul className="flex items-center text-base font-medium tracking-normal">
           {navLinks.map((item, idx) => (
             <NavLink
@@ -64,7 +66,6 @@ const Navbar = () => {
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => {
-                // Let navigation happen, then scroll to top
                 setTimeout(() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }, 0);
@@ -80,13 +81,19 @@ const Navbar = () => {
             </NavLink>
           ))}
         </ul>
-        {/* Optionally hide Login if logged in */}
-        {!localStorage.getItem("token") && (
+        {!localStorage.getItem("token") ? (
           <button
-            className="cursor-pointer rounded bg-[#FE4A49] px-7 py-2 font-medium text-white hover:bg-red-600/80"
+            className="cursor-pointer rounded bg-[#FE4A49] px-5 py-2 text-sm font-medium text-white hover:bg-red-600/80"
             onClick={() => navigate("/login")}
           >
             Login
+          </button>
+        ) : (
+          <button
+            className="cursor-pointer rounded border border-gray-200 bg-white px-5 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50"
+            onClick={logout}
+          >
+            Logout
           </button>
         )}
       </div>
@@ -131,7 +138,7 @@ const Navbar = () => {
             ))}
           </ul>
           {/* Optionally hide Login if logged in */}
-          {!localStorage.getItem("token") && (
+          {!localStorage.getItem("token") ? (
             <button
               className="mt-8 w-full rounded bg-[#FE4A49] px-7 py-2 font-medium text-white hover:bg-red-600/80"
               onClick={() => {
@@ -140,6 +147,16 @@ const Navbar = () => {
               }}
             >
               Login
+            </button>
+          ) : (
+            <button
+              className="mt-8 w-full rounded border border-gray-200 bg-white px-7 py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+              onClick={() => {
+                setIsOpen(false);
+                logout();
+              }}
+            >
+              Logout
             </button>
           )}
           <div>

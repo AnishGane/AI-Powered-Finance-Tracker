@@ -190,7 +190,7 @@ const Dashboard = () => {
             </div>
             <button
               onClick={() => setShowAddForm((prev) => !prev)}
-              className="mt-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#FE4A49] px-4 py-3 text-white sm:mt-0 md:w-auto"
+              className="mt-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[8px] bg-[#FE4A49] px-4 py-3 text-white sm:mt-0 md:w-auto"
             >
               + Add a Transaction
             </button>

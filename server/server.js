@@ -4,6 +4,7 @@ import "dotenv/config";
 import mongoDB from "./config/mongoDB.js";
 import userRouter from "./routes/userRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/user", userRouter);
 app.use("/api/transaction", transactionRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

@@ -8,6 +8,7 @@ import {
   MdTrendingDown,
   MdAccountBalanceWallet,
 } from "react-icons/md";
+import Chatbot from "../components/Chatbot";
 
 const Dashboard = () => {
   const {
@@ -269,6 +270,7 @@ const Dashboard = () => {
           <CategorySummary transactions={transactions} />
         </>
       </main>
+      <Chatbot />
     </>
   );
 };

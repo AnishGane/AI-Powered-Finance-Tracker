@@ -3,7 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import PageNotFound from "./pages/PageNotFound";
 import LandingPage from "./pages/LandingPage";
@@ -17,9 +17,11 @@ import { useFinance } from "./context/FinanceContext";
 
 const MainLayout = () => {
   const { token } = useFinance();
+  const location = useLocation();
+  const isLogin = location.pathname === "/login";
   return (
     <>
-      {!token && <Navbar />}
+      {!token && !isLogin && <Navbar />}
       {token ? (
         <div className="flex min-h-screen w-full bg-[#F7F4EA]">
           <Sidebar />

@@ -225,7 +225,7 @@ const Login = () => {
       {/* Brand Footer */}
       <div className="mt-10 text-center text-xs text-gray-400">
         &copy; {new Date().getFullYear()} SpendWise. All rights reserved.
-      </div>
+      </div>  
     </div>
   );
 };

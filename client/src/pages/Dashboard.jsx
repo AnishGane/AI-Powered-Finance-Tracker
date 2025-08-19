@@ -201,7 +201,7 @@ const Dashboard = () => {
           {showAddForm && (
             <>
               <div className="fixed inset-0 z-199 bg-black/30 backdrop-blur-sm"></div>
-              <div className="fixed inset-0 z-200 flex items-center justify-center">
+              <div className="fixed inset-0 z-200 mx-3 mb-6 flex items-center justify-center sm:mx-0 sm:mb-0">
                 <AddTransactionForm
                   onAdd={handleAddTransaction}
                   onClose={() => setShowAddForm(false)}

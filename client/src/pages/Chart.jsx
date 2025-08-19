@@ -286,7 +286,7 @@ const Chart = () => {
               key={mode}
               type="button"
               onClick={() => setFilter(mode)}
-              className={`w-full cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium transition outline-none ${
+              className={`cursor-pointer rounded-md w-full px-3 py-1.5 text-sm font-medium transition outline-none ${
                 filter === mode
                   ? "bg-white text-gray-900 shadow-sm"
                   : "text-gray-600 hover:text-gray-900"

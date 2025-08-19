@@ -24,7 +24,7 @@ const Transaction = () => {
         Are you sure you want to delete this transaction?
         <div className="mt-2 flex gap-2">
           <button
-            className="rounded bg-red-500 px-3 py-1 text-xs text-white hover:bg-red-700"
+            className="cursor-pointer rounded bg-red-500 px-3 py-1 text-xs text-white hover:bg-red-700"
             onClick={async () => {
               await deleteTransaction(id);
               fetchTransactions();
@@ -35,7 +35,7 @@ const Transaction = () => {
             Yes
           </button>
           <button
-            className="rounded bg-gray-300 px-3 py-1 text-xs"
+            className="cursor-pointer rounded bg-gray-300 px-3 py-1 text-xs hover:bg-gray-400"
             onClick={() => toast.dismiss(t.id)}
           >
             No
@@ -280,7 +280,7 @@ const Transaction = () => {
           {/* Backdrop Blur Layer */}
           <div className="fixed inset-0 z-199 bg-black/30 backdrop-blur-sm"></div>
           {/* Modal */}
-          <div className="fixed inset-0 z-200 flex items-center justify-center">
+          <div className="fixed inset-0 z-200 mx-3 flex items-center justify-center sm:mx-0">
             <EditTransactionForm
               initialValues={editTx}
               onEdit={handleEditSubmit}

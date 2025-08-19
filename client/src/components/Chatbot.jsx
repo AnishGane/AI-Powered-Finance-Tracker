@@ -67,7 +67,7 @@ const Chatbot = () => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed right-5 bottom-28 z-200 cursor-pointer rounded-full bg-[#FE4A49] p-4 text-white shadow-lg sm:right-8 sm:bottom-24"
+        className="fixed right-5 bottom-24 z-200 cursor-pointer rounded-full bg-[#FE4A49] p-4 text-white shadow-lg sm:right-8 sm:bottom-24"
       >
         <svg
           className="h-6 w-6"

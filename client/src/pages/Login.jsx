@@ -54,6 +54,9 @@ const Login = () => {
         if (response.data.success) {
           if (setToken) setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
+          // Set 1-day expiry (in ms)
+          const expiresAt = Date.now() + 24 * 60 * 60 * 1000;
+          localStorage.setItem("tokenExpiresAt", String(expiresAt));
           if (setUsername) setUsername(response.data.user.name);
           localStorage.setItem("username", response.data.user.name);
           localStorage.setItem("email", response.data.user.email);
@@ -225,7 +228,7 @@ const Login = () => {
       {/* Brand Footer */}
       <div className="mt-10 text-center text-xs text-gray-400">
         &copy; {new Date().getFullYear()} SpendWise. All rights reserved.
-      </div>  
+      </div>
     </div>
   );
 };

@@ -93,7 +93,7 @@ const Transaction = () => {
           >
             &times;
           </button>
-          <h2 className="mb-7 text-2xl font-bold">Edit Transaction</h2>
+          <h2 className="mb-7 text-2xl font-semibold">Edit Transaction</h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
@@ -182,7 +182,7 @@ const Transaction = () => {
           </div>
           <button
             type="submit"
-            className="w-full cursor-pointer rounded-xl bg-gradient-to-r from-[#FE4A49] to-[#c9302c] px-4 py-3 text-lg font-semibold text-white shadow-md transition hover:from-[#e63b38] hover:to-[#a81e1c] focus:ring-2 focus:ring-[#FE4A49]/40 focus:outline-none"
+            className="w-full cursor-pointer rounded-xl bg-gradient-to-r from-[#FE4A49] to-[#c9302c] px-4 py-3 text-lg font-normal text-white shadow-md transition hover:from-[#e63b38] hover:to-[#a81e1c] focus:ring-2 focus:ring-[#FE4A49]/40 focus:outline-none"
             disabled={formLoading || loading}
           >
             {formLoading || loading ? "Saving..." : "Save Changes"}

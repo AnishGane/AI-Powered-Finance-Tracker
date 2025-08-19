@@ -4,10 +4,13 @@ import { useFinance } from "../context/FinanceContext";
 import { MdClose, MdSend } from "react-icons/md";
 
 const Chatbot = () => {
-  const { api, token } = useFinance();
+  const { api, token, username } = useFinance();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "Hi! Ask me anything about your finances." },
+    {
+      role: "assistant",
+      content: `Hi${username ? `, ${username}` : ""}! Ask me anything about your finances.`,
+    },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -64,7 +67,7 @@ const Chatbot = () => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed right-5 bottom-28 z-200 rounded-full bg-[#FE4A49] p-4 text-white shadow-lg sm:right-8 sm:bottom-24"
+        className="fixed right-5 bottom-28 z-200 cursor-pointer rounded-full bg-[#FE4A49] p-4 text-white shadow-lg sm:right-8 sm:bottom-24"
       >
         <svg
           className="h-6 w-6"

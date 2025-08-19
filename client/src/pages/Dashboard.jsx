@@ -72,7 +72,7 @@ const Dashboard = () => {
           >
             &times;
           </button>
-          <h2 className="mb-7 text-2xl font-bold">Add Transaction</h2>
+          <h2 className="mb-7 text-2xl font-semibold">Add Transaction</h2>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
@@ -163,7 +163,7 @@ const Dashboard = () => {
           </div>
           <button
             type="submit"
-            className="w-full cursor-pointer rounded-xl bg-gradient-to-r from-[#FE4A49] to-[#c9302c] px-4 py-3 text-lg font-semibold text-white shadow-md transition hover:from-[#e63b38] hover:to-[#a81e1c] focus:ring-2 focus:ring-[#FE4A49]/40 focus:outline-none"
+            className="w-full cursor-pointer rounded-xl bg-gradient-to-r from-[#FE4A49] to-[#c9302c] px-4 py-3 text-lg font-normal text-white shadow-md transition hover:from-[#e63b38] hover:to-[#a81e1c] focus:ring-2 focus:ring-[#FE4A49]/40 focus:outline-none"
             disabled={formLoading}
           >
             {formLoading ? "Adding..." : "Add Transaction"}
@@ -181,13 +181,13 @@ const Dashboard = () => {
           {/* Dashboard Header */}
           <section className="mt-2 mb-8 flex w-full flex-col items-center justify-between text-left sm:flex-row">
             <div className="flex w-full flex-row justify-between sm:flex-col md:w-auto">
-              <h1 className="text-2xl font-semibold text-gray-900 sm:text-3xl md:text-4xl">
+              <h1 className="flex flex-col text-4xl font-semibold text-gray-900 sm:text-3xl">
                 Dashboard
+                <p className="flex items-center gap-1 text-sm font-normal text-gray-600 sm:text-base">
+                  Welcome {username.charAt(0).toUpperCase() + username.slice(1)}{" "}
+                  <span className="-ml-1 text-2xl">🖐️</span>
+                </p>
               </h1>
-              <p className="text-sm text-gray-600 sm:text-base">
-                Welcome {username.charAt(0).toUpperCase() + username.slice(1)}{" "}
-                <span className="-ml-1 text-2xl">🖐️</span>
-              </p>
             </div>
             <button
               onClick={() => setShowAddForm((prev) => !prev)}

@@ -3,7 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import { Route, Routes, Outlet, useLocation } from "react-router-dom";
+import { Route, Routes, Outlet, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import PageNotFound from "./pages/PageNotFound";
 import LandingPage from "./pages/LandingPage";
@@ -42,6 +42,16 @@ const MainLayout = () => {
       )}
     </>
   );
+};
+
+const LandingOrRedirect = () => {
+  const { token } = useFinance();
+  return token ? <Navigate to="/dashboard" replace /> : <LandingPage />;
+};
+
+const LoginOrRedirect = () => {
+  const { token } = useFinance();
+  return token ? <Navigate to="/dashboard" replace /> : <Login />;
 };
 
 const App = () => {
@@ -91,11 +101,11 @@ const App = () => {
       />
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingOrRedirect />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginOrRedirect />} />
           <Route path="/charts" element={<Chart />} />
           <Route path="/transactions" element={<Transaction />} />
           <Route path="/settings" element={<Settings />} />

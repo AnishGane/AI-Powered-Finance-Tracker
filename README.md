@@ -65,17 +65,36 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
    VITE_BACKEND_URL=http://localhost:4000
    ```
 
+   Create a `.env` file in the `server` directory:
+
+   ```env
+   # Backend .env
+   PORT= 4000
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   ```
+
    Adjust the URL if your backend runs elsewhere.
 
-4. **Start the development server:**
+4. **Start the development servers:**
+
+   In two separate terminals, run:
 
    ```bash
+   # Terminal 1
+   cd client
    npm run dev
    # or
    yarn dev
    ```
 
-   The app will be available at [http://localhost:5173](http://localhost:5173) (or as shown in your terminal).
+   ```bash
+   # Terminal 2
+   cd server
+   npm run start
+   ```
+
+   The frontend app will be available at [http://localhost:5173](http://localhost:5173) (or as shown in your terminal). The backend will run on [http://localhost:4000](http://localhost:4000) by default.
 
 ---
 
@@ -88,9 +107,22 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
-The project is organized as follows:
-
-
-
+```
+AI POWERED FINANCE TRACKER/
+├── client/                 # Customer-facing React app
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── pages/          # Page components
+│   │   ├── context/        # React context for state management
+│   └── package.json
+├── server/                 # Node.js/Express API server
+│   ├── config/            # Database and service configurations
+│   ├── controllers/       # Request handlers
+│   ├── middleware/        # Authentication and validation
+│   ├── models/           # MongoDB schemas
+│   ├── routes/           # API routes
+│   └── server.js         # Main server file
+└── README.md
+```

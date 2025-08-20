@@ -40,14 +40,18 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/spendwise.git
-   cd spendwise
+   git clone https://github.com/AnishGane/AI-Powered-Finance-Tracker
    ```
 
 2. **Install dependencies:**
 
    ```bash
    cd client
+   npm install
+   # or
+   yarn install
+
+   cd server
    npm install
    # or
    yarn install
@@ -58,7 +62,7 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
    Create a `.env` file in the `client` directory:
 
    ```
-   VITE_BACKEND_URL=http://localhost:5000
+   VITE_BACKEND_URL=http://localhost:4000
    ```
 
    Adjust the URL if your backend runs elsewhere.

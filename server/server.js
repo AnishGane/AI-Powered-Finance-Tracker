@@ -10,7 +10,10 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: ["https://ai-powered-finance-tracker-qjzn.onrender.com/"],
+  origin: [
+    "https://ai-powered-finance-tracker-qjzn.onrender.com/",
+    "http://localhost:5173",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "token"],
   credentials: true,

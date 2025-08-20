@@ -10,7 +10,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: ["https://ai-powered-finance-tracker-c2gj.onrender.com"],
+  origin: ["https://ai-powered-finance-tracker-qjzn.onrender.com/"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "token"],
   credentials: true,

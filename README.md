@@ -126,3 +126,23 @@ AI POWERED FINANCE TRACKER/
 │   └── server.js         # Main server file
 └── README.md
 ```
+---
+
+## 👨‍💻 Author
+
+**Anish Gane** 
+
+## 🙏 Acknowledgments
+
+- MongoDB Atlas for database hosting
+- Render for deployment platform
+
+## 📞 Support
+
+For support and questions:
+- Create an issue in the GitHub repository
+- Contact: anishgane10@gmail.com
+
+---
+
+**Note**: A demo project for practicing my tech skills.

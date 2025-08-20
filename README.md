@@ -161,6 +161,7 @@ AI POWERED FINANCE TRACKER/
 
 ![Settings](/screenshots/User%20Settings%20Page.png)
 *User setting page for seeing user profile*
+
 ---
 
 ## 👨‍💻 Author

@@ -136,34 +136,6 @@ AI POWERED FINANCE TRACKER/
 
 ---
 
-## Screenshots
-
-![Landing Page](/screenshots/Landing%20Page.png)
-*Modern landing page featuring Why to choose us & testimonial section*
-
-![Contact Us](/screenshots/Contact%20Us%20Page.png)
-*Contact us page*
-
-![Login & Sign Up](/screenshots/Login%20Page.png)
-*Login Page*
-
-![Dashboard](/screenshots/Dashboard.png)
-*A modern dashboard displaying users' expenses and income in a clear format with an alert message and category wise summary*
-
-![Add Transaction](/screenshots/Add%20Transaction%20Page.png)
-*Add Transaction page for user to add their transactions*
-
-![Chart](/screenshots/Chart%20Page.png)
-*Chart page for visual representation of income & expenses*
-
-![Transaction Page](/screenshots/Transaction%20Page.png)
-*Transaction page of user's transactions in table format*
-
-![Settings](/screenshots/User%20Settings%20Page.png)
-*User setting page for seeing user profile*
-
----
-
 ## 👨‍💻 Author
 
 **Anish Gane** 

@@ -4,7 +4,7 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
 
 ---
 
-## Features
+## 🌟 Features
 
 - **Dashboard**: View your total income, expenses, and balance at a glance.
 - **Add/Edit/Delete Transactions**: Easily manage your financial records.
@@ -17,7 +17,7 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Frontend**: React, Tailwind CSS, Chart.js, Framer Motion
 - **Backend**: Node.js, Express, MongoDB (see backend repo if applicable)
@@ -27,7 +27,7 @@ SpendWise is a modern, full-stack personal finance tracker that helps you manage
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -126,6 +126,41 @@ AI POWERED FINANCE TRACKER/
 │   └── server.js         # Main server file
 └── README.md
 ```
+---
+
+## 🌐 Live Demo
+
+### Website Links
+- **Frontend (Customer App)**: [https://softstitch-ecommerce.onrender.com](https://softstitch-ecommerce.onrender.com)
+- **Backend API**: [https://softstitch-backend.onrender.com](https://softstitch-backend.onrender.com)
+
+---
+
+## Screenshots
+
+![Landing Page](/screenshots/Landing%20Page.png)
+*Modern landing page featuring Why to choose us & testimonial section*
+
+![Contact Us](/screenshots/Contact%20Us%20Page.png)
+*Contact us page*
+
+![Login & Sign Up](/screenshots/Login%20Page.png)
+*Login Page*
+
+![Dashboard](/screenshots/Dashboard.png)
+*A modern dashboard displaying users' expenses and income in a clear format with an alert message and category wise summary*
+
+![Add Transaction](/screenshots/Add%20Transaction%20Page.png)
+*Add Transaction page for user to add their transactions*
+
+![Chart](/screenshots/Chart%20Page.png)
+*Chart page for visual representation of income & expenses*
+
+![Transaction Page](/screenshots/Transaction%20Page.png)
+*Transaction page of user's transactions in table format*
+
+![Settings](/screenshots/User%20Settings%20Page.png)
+*User setting page for seeing user profile*
 ---
 
 ## 👨‍💻 Author
